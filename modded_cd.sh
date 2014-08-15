@@ -2,6 +2,9 @@
 # along with accepting parameters, either the number of folders to go up by
 # or a specific folder that you want to go to in the path
 
+# Regex for number
+re='^[0-9]+$'
+
 function .. () {
     # If there is an argument
     if [ $1 ]; then

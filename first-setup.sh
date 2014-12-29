@@ -33,7 +33,7 @@ defaults write com.apple.dock autohide-delay -float 0
 
 # Kill the dock to enable the settings
 killall Dock
-notif "Hot corner and Screen saver lock configured"
+notif "Dock and Screen saver configured"
 
 
 # Check for Homebrew,
@@ -70,6 +70,7 @@ brew install homebrew/dupes/grep
 binaries=(
 	apple-gcc42
 	git
+  git-extras
 	python
 	python3
 	hub
@@ -109,6 +110,7 @@ brew tap 7oi/homebrew-custom
 
 # Apps
 apps=(
+  4k-video-downloader
   adobe-creative-cloud
   appcleaner
   audacity
@@ -203,6 +205,8 @@ brew linkapps
 brew cleanup
 brew prune
 brew cask cleanup
+
+chsh -s /bin/zsh
 
 # Create symlinks with ln -s path/to/original /path/to/link
 # Get files from google drive: gdget.py file_id

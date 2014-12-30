@@ -68,14 +68,14 @@ brew install homebrew/dupes/grep
 
 # Install some binaries
 binaries=(
-	apple-gcc42
-	git
+  apple-gcc42
+  git
   git-extras
-	python
-	python3
-	hub
+  python
+  python3
+  hub
   node
-	mackup
+  mackup
 )
 
 notif "Installing binaries..."
@@ -88,8 +88,6 @@ brew link --overwrite python
 brew install vim --env-std --override-system-vim
 
 brew cleanup
-# Set up Powerline
-pip install https://github.com/Lokaltog/powerline/tarball/develop
 
 notif "Setting up pip and virtualenv..."
 sudo pip install virtualenv
@@ -105,6 +103,8 @@ sudo pip install gdcmdtools
 brew install caskroom/cask/brew-cask
 brew tap caskroom/unofficial
 brew tap caskroom/versions
+# One for popcorn time
+brew tap casidiablo/homebrew-custom
 # Get my own custom homebrew stuffs
 brew tap 7oi/homebrew-custom
 
@@ -126,6 +126,7 @@ apps=(
   macaw
   paragon-ntfs
   pd-extended
+  popcorn-time
   pycharm
   razer-synapse
   soundflower
@@ -153,26 +154,27 @@ custom_apps=(
   ad-replicant
   metasynth-demo
   metasynth-app
-  ni-replika
-  popcorn-time
   sm-spectral
   soundtoys-devilloc
   soundtoys-littlemicroshift
   soundtoys-native
   soundtoys-radiator
-  uhe-ace
   xfer-cthulhu
   xx-demo
   xx-app
 )
 
+# These need fixin':
+# ni-replika
+# uhe-ace
+
 notif "Installing custom casks..."
 brew cask install --appdir="/Applications" ${custom_apps[@]}
 
 # Copy AU's and VST's to their places
-cp -Rf /Volumes/Komplete\ 9\ Ultimate/Others/PlugsCopy/AU/* /Library/Audio/Plug-Ins/Components/
-cp -Rf /Volumes/Komplete\ 9\ Ultimate/Others/PlugsCopy/VST/* /Library/Audio/Plug-Ins//Library/Audio/Plug-Ins/VST/
-cp -Rf /Volumes/Komplete\ 9\ Ultimate/Others/PlugsCopy/Presets/* /Library/Audio/Plug-Ins//Library/Audio/Presets/
+sudo cp -Rf /Volumes/Komplete\ 9\ Ultimate/Others/PlugsCopy/AU/* /Library/Audio/Plug-Ins/Components/
+sudo cp -Rf /Volumes/Komplete\ 9\ Ultimate/Others/PlugsCopy/VST/* /Library/Audio/Plug-Ins/VST/
+sudo cp -Rf /Volumes/Komplete\ 9\ Ultimate/Others/PlugsCopy/Presets/* /Library/Audio/Presets/
 
 
 # ...aaaand fonts!
@@ -194,11 +196,14 @@ fonts=(
 
 brew cask install ${fonts[@]}
 
+# Set up Powerline
+pip install https://github.com/Lokaltog/powerline/tarball/develop
+
 # Now for mackup
 # Make the config file
 echo "[storage]\nengine = google_drive" > ~/.mackup.cfg
 # Restore settings after logging in to gdrive
-#mackup restore
+# mackup restore
 
 # Cleanup
 brew linkapps
